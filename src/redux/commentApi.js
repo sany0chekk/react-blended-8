@@ -24,10 +24,25 @@ export const commentApi = createApi({
       },
       invalidatesTags: ['Comments'],
     }),
+    updateCommentCountReaction: builder.mutation({
+      query({ commentId, ...comment }) {
+        console.log('id', commentId);
+        return {
+          url: `${API_ENDPOINT}/${commentId}`,
+          method: 'PUT',
+          body: comment,
+        };
+      },
+      invalidatesTags: ['Comments'],
+    }),
   }),
 });
 
-export const { useGetCommentsQuery, useAddCommentsMutation } = commentApi;
+export const {
+  useGetCommentsQuery,
+  useAddCommentsMutation,
+  useUpdateCommentCountReactionMutation,
+} = commentApi;
 
 // import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
